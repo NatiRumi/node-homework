@@ -27,13 +27,14 @@ const listContacts = async() => {
     return result;
   }
   
-  const addContact = async(data) => {
+  const addContact = async(name, email, phone) => {
     const contacts = await listContacts();
     const newContact = {
         id: nanoid(),
-        ...data,
+        name,
+        email,
+        phone,
     }
-    console.log(newContact);
     contacts.push(newContact);
     await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
     return newContact;
